@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D _rb;
     private Vector2 movement;
+    public bool isDecorationCollected;
+    private Interactable currentInteractable;
 
     void Start()
     {
@@ -17,11 +19,35 @@ public class Player : MonoBehaviour
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");   
+        movement.y = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        {
+            currentInteractable.Interact();
+        }
     }
 
     void FixedUpdate()
     {
         _rb.MovePosition(_rb.position + movement * speed * Time.fixedDeltaTime);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Interactable interactableObj = other.GetComponent<Interactable>();
+
+        if (interactableObj != null)
+        {
+            currentInteractable = interactableObj;
+            Debug.Log("Etkileþime girmek için E'ye bas.");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Interactable interactableObj = other.GetComponent<Interactable>();
+
+        if (interactableObj != null && interactableObj == currentInteractable)
+        {
+            currentInteractable = null; 
+        }
     }
 }
