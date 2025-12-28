@@ -66,6 +66,7 @@ public class Bed : MonoBehaviour,Interactable
             {
                 completed = true;
                 GetComponent<SpriteRenderer>().sprite = finalBed;
+                player.taskBed = true;
             }
         }
         

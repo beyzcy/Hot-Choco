@@ -11,20 +11,21 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private Vector2 movement;
 
+    public bool gameFinished,taskTree,taskBed,taskKitchen,taskWall;
+
     public bool isDecorationCollected;
     private Interactable currentInteractable;
     public bool canMove = true, notedGrabbed = false;
-    //public float remainingTime;
+    public float remainingTime;
 
-    public Image targetImageObject;
-    public Sprite gameOverScreen;
+    public GameObject gameOverPanel,winOverPanel;
     public Button gameOverButton;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
-        // remainingTime = 20;
+        remainingTime = 20;
     }
 
     void Update()
@@ -59,14 +60,18 @@ public class Player : MonoBehaviour
         {
             currentInteractable.Interact();
         }
-        /*if (notedGrabbed == true) 
+        if (notedGrabbed == true && !gameFinished) 
         {
             remainingTime -= Time.deltaTime;
         }
         if (remainingTime < 0)
         {
             GameOver();
-        }*/
+        }
+        if(taskBed && taskKitchen && taskTree && taskWall)
+        {
+            WinOver();
+        }
     }
 
     void FixedUpdate()
@@ -90,9 +95,12 @@ public class Player : MonoBehaviour
     {
         canMove = false;
         _anim.SetFloat("Speed", 0);
-        targetImageObject.sprite = gameOverScreen;
-        gameOverButton.gameObject.SetActive(true);
-        targetImageObject.gameObject.SetActive(true);
+        gameOverPanel.SetActive(true);
+    }
+    public void WinOver()
+    {
+        gameFinished = true;
+        winOverPanel.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

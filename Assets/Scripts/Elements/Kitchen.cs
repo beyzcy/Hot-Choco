@@ -12,6 +12,7 @@ public class Kitchen : MonoBehaviour,Interactable
     public Player player;
     public int currentIndex =0;
     public Jar jarController;
+    public Sprite finalKitchen;
     public void Interact()
     {
         if (canWork == false)
@@ -31,6 +32,11 @@ public class Kitchen : MonoBehaviour,Interactable
     {
         if (canWork == true) {
             ShowImage(currentIndex);
+        }
+        if(currentIndex == 22)
+        {
+            GetComponent<SpriteRenderer>().sprite = finalKitchen;
+            player.taskKitchen = true;
         }
     }
 
