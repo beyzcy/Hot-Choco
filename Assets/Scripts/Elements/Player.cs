@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 3f;
+    public AudioSource MyMusic;
 
     public GameObject timePanel;
     private Rigidbody2D _rb;
@@ -26,9 +27,10 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
-        remainingTime = 50;
+        remainingTime = 250;
         mainMenuPanel.SetActive(true);
         canMove=(false);
+        MyMusic.Play();
     }
 
     void Update()

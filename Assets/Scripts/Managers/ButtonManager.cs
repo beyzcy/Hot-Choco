@@ -32,7 +32,7 @@ public class ButtonManager : MonoBehaviour
         }
 
         float timer = 0f;
-        float duration = 5.0f; 
+        float duration = 2.6f; 
 
         while (timer < duration)
         {
@@ -40,8 +40,10 @@ public class ButtonManager : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        yield return new WaitForSeconds(10f);
+    
 
-        StopAnimation();
+    StopAnimation();
         timePanel.SetActive(true);
     }
 
