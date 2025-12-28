@@ -11,7 +11,7 @@ public class ChristmasTree : MonoBehaviour, Interactable
     public bool canDecorate, krampus,timeRunning=false;
     public Sprite finalTree;
     private Vector2 startPos, currentPos, differencePos;
-    private float xPosition,remainingTime=15, timePassed=0f;
+    private float xPosition,remainingTime=10, timePassed=0f;
     private void Start()
     {
         targetImageObject.gameObject.SetActive(false);
@@ -52,6 +52,7 @@ public class ChristmasTree : MonoBehaviour, Interactable
             else if(currentIndex  == imageArray.Length-1) 
             { 
                 GetComponent<SpriteRenderer>().sprite = finalTree;
+                player.taskTree = true;
             }
             if (krampus) 
             {
