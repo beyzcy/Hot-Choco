@@ -52,4 +52,4 @@ UI & bug fixes
 👥 Team – Hot Choco
 
 Full game page:
-👉 [itch.io Linki)](https://twentybruh.itch.io/the-krampuz)
+👉 [itch.io](https://twentybruh.itch.io/the-krampuz)
